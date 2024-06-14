@@ -4,25 +4,35 @@ import { getAllItems, deleteItem } from '../api/itemService';
 
 const ItemList = () => {
     const [items, setItems] = useState([]);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         fetchItems();
     }, []);
 
     const fetchItems = async () => {
-        const response = await getAllItems();
-        setItems(response.data);
+        try {
+            const response = await getAllItems();
+            setItems(response.data);
+        } catch (error) {
+            setError('Error fetching items');
+        }
     };
 
     const handleDelete = async (id) => {
-        await deleteItem(id);
-        fetchItems();
+        try {
+            await deleteItem(id);
+            fetchItems();
+        } catch (error) {
+            setError('Error deleting item');
+        }
     };
 
     return (
         <div>
             <h1>Items</h1>
             <Link to="/create">Create New Item</Link>
+            {error && <p>{error}</p>}
             <ul>
                 {items.map((item) => (
                     <li key={item._id}>

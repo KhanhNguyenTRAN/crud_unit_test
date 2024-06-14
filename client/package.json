@@ -36,5 +36,21 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "src/App.jsx",
+      "src/index.js",
+      "src/old/",
+      "src/utils/"
+    ],
+    "moduleNameMapper": {
+      "^axios$": "axios/dist/node/axios.cjs"
+    },
+    "coverageThreshold": {
+      "global": {
+        "lines": 80
+      }
+    }
   }
 }
