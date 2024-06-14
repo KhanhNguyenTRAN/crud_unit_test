@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ItemList from './components/ItemList';
-import ItemForm from './components/ItemForm';
-import ItemDetail from './components/ItemDetail';
+import ItemList from './components/itemList';
+import ItemForm from './components/itemForm';
+import ItemDetail from './components/itemDetail';
 
 const App = () => {
     return (
