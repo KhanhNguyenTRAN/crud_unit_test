@@ -5,16 +5,22 @@ import { getItemById } from '../api/itemService';
 const ItemDetail = () => {
     const { id } = useParams();
     const [item, setItem] = useState(null);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         fetchItem(id);
     }, [id]);
 
     const fetchItem = async (id) => {
-        const response = await getItemById(id);
-        setItem(response.data);
+        try {
+            const response = await getItemById(id);
+            setItem(response.data);
+        } catch (err) {
+            setError('Item not found');
+        }
     };
 
+    if (error) return <div>{error}</div>;
     if (!item) return <div>Loading...</div>;
 
     return (
